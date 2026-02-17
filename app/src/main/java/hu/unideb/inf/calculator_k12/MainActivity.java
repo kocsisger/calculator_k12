@@ -34,10 +34,32 @@ public class MainActivity extends AppCompatActivity {
 
         switch (button.getText().toString()){
             case "CE" : resultTextView.setText("0"); break;
-            case "="  : break;
-            default   : resultTextView.append(button.getText().toString());
+            case "="  : resultTextView.setText(
+                           calculate(resultTextView.getText().toString())
+                        ); break;
+            default   :
+                if (resultTextView.getText().toString().equals("0"))
+                    resultTextView.setText("");
+                resultTextView.append(button.getText().toString());
         }
 
         //Log.d("TEST_BUTTON", button.getText().toString());
+    }
+
+    private String calculate(String expression) {
+        String[] splitExpression = expression.split("[+\\-*/]");
+        int op1 = Integer.parseInt(splitExpression[0]);
+        int op2 = Integer.parseInt(splitExpression[1]);
+
+        char operator = expression.charAt( splitExpression[0].length() );
+
+        switch (operator){
+            case '+': return String.valueOf(op1+op2);
+            case '-': return String.valueOf(op1-op2);
+            case '*': return String.valueOf(op1*op2);
+            case '/': return String.valueOf(op1/op2);
+        }
+
+        return "ERROR";
     }
 }
