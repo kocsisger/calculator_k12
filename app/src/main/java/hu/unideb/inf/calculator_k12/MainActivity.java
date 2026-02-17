@@ -1,6 +1,9 @@
 package hu.unideb.inf.calculator_k12;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +23,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void handleButtonPressed(View view) {
+        Button button = (Button)view;
+
+        Log.d("TEST_BUTTON", button.getText().toString());
     }
 }
